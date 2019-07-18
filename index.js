@@ -1,3 +1,5 @@
+const { getPopulateAndSelect, getQueryObj } = require('./src/helper');
+
 class CRUD {
   constructor(model) {
     this.model = model;
@@ -54,8 +56,8 @@ class CRUD {
 
   async getController(req, res) {
     try {
-      const options = req.getPopulateAndSelect(req.params[0], req.query);
-      const query = req.getQueryObj(req.query);
+      const options = getPopulateAndSelect(req.params[0], req.query);
+      const query = getQueryObj(req.query);
 
       const data = await this.getDataFromDb({ ...options, ...query });
       if (!data) throw new Error('Unable to get data!');
@@ -70,7 +72,7 @@ class CRUD {
     try {
       const { _id } = req.body;
       const options = {
-        ...req.getPopulateAndSelect(req.params[0]),
+        ...getPopulateAndSelect(req.params[0]),
         query: { _id },
         update: req.body,
       };
