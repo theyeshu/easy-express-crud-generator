@@ -1,10 +1,10 @@
 {
   "name": "easy-express-crud-generator",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Rest apis generator for node, express app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint '**/*.js'"
   },
   "repository": {
     "type": "git",
@@ -44,5 +44,12 @@
     "body-parser": "^1.x",
     "express": "4.x",
     "mongoose": "5.x"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint",
+      "pre-publish": "npm run lint"
+    }
   }
 }
