@@ -6,7 +6,7 @@ const {
 
 module.exports.getPopulateAndSelect = (param) => {
   const obj = { populate: [], select: {} };
-  const arr = param ? param.toLowerCase().split('/') : '';
+  const arr = param ? param.split('/') : '';
 
   if (!arr || !Array.isArray(arr) || arr.length === 0) return obj;
 
@@ -38,25 +38,24 @@ module.exports.getQueryObj = (queryObj = {}) => {
 
   keys.filter(x => !!x).forEach((x) => {
     // mongo id filter
-    if (x.toLowerCase() === '_id') {
+    if (x === '_id') {
       obj.query._id = queryObj[x];
       return;
     }
 
-    const key = x.toLowerCase();
     // sorting and pagination
-    if (x.includes('_') && sortSuffix.includes(key)) {
-      if (key === LIMIT) {
+    if (x.includes('_') && sortSuffix.includes(x)) {
+      if (x === LIMIT) {
         obj.limit = Math.round(parseInt(queryObj[x], 10)) || 0;
         return;
       }
 
-      if (key === SKIP) {
+      if (x === SKIP) {
         obj.skip = Math.round(parseInt(queryObj[x], 10)) || 0;
         return;
       }
 
-      if (key === SORT) {
+      if (x === SORT) {
         queryObj[x].split(',').forEach((z) => {
           const [field, order] = z.split(':');
           if (order === ASC || order === DESC) obj.sort[field] = order;
@@ -67,7 +66,7 @@ module.exports.getQueryObj = (queryObj = {}) => {
 
 
     // filters
-    const [field, filterSuffix] = x.toLowerCase().split('_');
+    const [field, filterSuffix] = x.split('_');
     if (filterSuffix && allFilterSuffix.includes(filterSuffix)) {
       switch (filterSuffix) {
         case CONTAINS:

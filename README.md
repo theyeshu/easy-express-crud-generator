@@ -14,6 +14,8 @@ You should have [express](https://www.npmjs.com/package/express) app ready with 
 
 ## Breif Introduction
 
+> **Query is case sensitive. All mentioned params and query stirngs are expected in lowercase.**
+
 * **Normal query:** ```/city``` will fetch all records with all data.
 * **Graphql style, Ask for data you need**: Simply add variable name in params e.g ```/city/name/country``` you will get _id, name and country only. Nothing else.
 * **Search and filteration** can be done with following **query** keywords.
