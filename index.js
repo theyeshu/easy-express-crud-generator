@@ -91,12 +91,14 @@ class CRUD {
     }
   }
 
-  getRoutes(Router) {
+  getRouter(Router) {
     Router.route('/?*')
       .get(this.getController)
       .post(this.addController)
       .put(this.updateController)
       .delete(this.deleteController);
+
+    return Router;
   }
 }
 
