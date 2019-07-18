@@ -1,6 +1,15 @@
 class CRUD {
   constructor(model) {
     this.model = model;
+    this.addDataToDb = this.addDataToDb.bind(this);
+    this.getDataFromDb = this.getDataFromDb.bind(this);
+    this.updateDataToDb = this.updateDataToDb.bind(this);
+    this.deleteDataToDb = this.deleteDataToDb.bind(this);
+    this.addController = this.addController.bind(this);
+    this.getController = this.getController.bind(this);
+    this.updateController = this.updateController.bind(this);
+    this.deleteController = this.deleteController.bind(this);
+    this.getRouter = this.getRouter.bind(this);
   }
 
   addDataToDb(obj) {
