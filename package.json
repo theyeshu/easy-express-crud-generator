@@ -1,6 +1,6 @@
 {
   "name": "easy-express-crud-generator",
-  "version": "1.2.3",
+  "version": "1.2.5",
   "description": "Rest apis generator for node, express app",
   "main": "index.js",
   "scripts": {

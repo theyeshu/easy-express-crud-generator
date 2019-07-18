@@ -43,6 +43,10 @@ class CRUD {
     return this.model.findOneAndDelete(query);
   }
 
+  getCountFromDb({ query }) {
+    return this.model.countDocuments(query);
+  }
+
   async addController(req, res) {
     try {
       const data = await this.addDataToDb(req.body);
@@ -62,7 +66,9 @@ class CRUD {
       const data = await this.getDataFromDb({ ...options, ...query });
       if (!data) throw new Error('Unable to get data!');
 
-      res.send({ status: true, data });
+      const count = await this.getCountFromDb(query);
+
+      res.send({ status: true, data, count });
     } catch (err) {
       res.send({ status: false, message: err.message || 'Something went wrong!' });
     }
