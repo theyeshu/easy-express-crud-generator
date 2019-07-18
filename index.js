@@ -1,7 +1,6 @@
 class CRUD {
-  constructor(model, router) {
+  constructor(model) {
     this.model = model;
-    this.router = router;
   }
 
   addDataToDb(obj) {
@@ -92,8 +91,8 @@ class CRUD {
     }
   }
 
-  getRoutes() {
-    this.router.route('/?*')
+  getRoutes(Router) {
+    Router.route('/?*')
       .get(this.getController)
       .post(this.addController)
       .put(this.updateController)
