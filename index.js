@@ -52,9 +52,12 @@ class CRUD {
       const data = await this.addDataToDb(req.body);
       if (!data) throw new Error('Unable to add data!');
 
-      res.send({ status: true, data });
+      return res.send({ status: true, data });
     } catch (err) {
-      res.send({ status: false, message: err.message || 'Something went wrong!' });
+      if (req.errorHandler && typeof req.errorHandler === 'function') {
+        return req.errorHandler(err);
+      }
+      return res.send({ status: false, message: err.message || 'Something went wrong!' });
     }
   }
 
@@ -69,11 +72,14 @@ class CRUD {
       const count = await this.getCountFromDb(query);
       const skipped = query.skip || 0;
 
-      res.send({
+      return res.send({
         status: true, data, count, skipped,
       });
     } catch (err) {
-      res.send({ status: false, message: err.message || 'Something went wrong!' });
+      if (req.errorHandler && typeof req.errorHandler === 'function') {
+        return req.errorHandler(err);
+      }
+      return res.send({ status: false, message: err.message || 'Something went wrong!' });
     }
   }
 
@@ -89,9 +95,12 @@ class CRUD {
       const data = await this.updateDataToDb(options);
       if (!data) throw new Error('Unable to update data!');
 
-      res.send({ status: true, data });
+      return res.send({ status: true, data });
     } catch (err) {
-      res.send({ status: false, message: err.message || 'Something went wrong!' });
+      if (req.errorHandler && typeof req.errorHandler === 'function') {
+        return req.errorHandler(err);
+      }
+      return res.send({ status: false, message: err.message || 'Something went wrong!' });
     }
   }
 
@@ -105,9 +114,12 @@ class CRUD {
       const data = await this.deleteDataToDb(options);
       if (!data) throw new Error('Unable to delete data!');
 
-      res.send({ status: true, data });
+      return res.send({ status: true, data });
     } catch (err) {
-      res.send({ status: false, message: err.message || 'Something went wrong!' });
+      if (req.errorHandler && typeof req.errorHandler === 'function') {
+        return req.errorHandler(err);
+      }
+      return res.send({ status: false, message: err.message || 'Something went wrong!' });
     }
   }
 

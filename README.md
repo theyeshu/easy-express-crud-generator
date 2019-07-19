@@ -112,6 +112,14 @@ const app = express();
 app.use(bodyParser.json());
 app.listen(3000);
 
+// Custom error handler (optional)
+app.use((req, res, next) => {
+  req.errorHandler = (err) => {
+    return res.send({ status: false, message: 'Something went wrong' });
+  }
+  next();
+});
+
 const apiRouter = express.Router();
 
 apiRouter.use('/city', cityRouter);
