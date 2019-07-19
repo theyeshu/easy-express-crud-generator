@@ -67,8 +67,11 @@ class CRUD {
       if (!data) throw new Error('Unable to get data!');
 
       const count = await this.getCountFromDb(query);
+      const skipped = query.skip || 0;
 
-      res.send({ status: true, data, count });
+      res.send({
+        status: true, data, count, skipped,
+      });
     } catch (err) {
       res.send({ status: false, message: err.message || 'Something went wrong!' });
     }

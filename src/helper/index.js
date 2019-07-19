@@ -33,7 +33,7 @@ module.exports.getQueryObj = (queryObj = {}) => {
   if (keys.length === 0) return queryObj;
 
   const obj = {
-    query: {}, sort: {}, limit: 0, skip: 0,
+    query: {}, sort: {}, limit: 50, skip: 0,
   };
 
   keys.filter(x => !!x).forEach((x) => {
