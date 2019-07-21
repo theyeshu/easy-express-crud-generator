@@ -1,6 +1,6 @@
 {
   "name": "easy-express-crud-generator",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Rest apis generator for node, express app",
   "main": "index.js",
   "scripts": {
@@ -36,8 +36,8 @@
   "devDependencies": {
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-plugin-import": "^2.18.0",
-    "husky": "^3.0.0"
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.1"
   },
   "dependencies": {},
   "peerDependencies": {

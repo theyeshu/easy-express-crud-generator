@@ -1,6 +1,7 @@
-# 1.4.1
+# 1.4.2
 
 * Fix the issue where reference ids are not working with filters
+* Update dev dependencies
 
 ## 1.4.0
 
