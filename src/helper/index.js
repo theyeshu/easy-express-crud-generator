@@ -64,27 +64,29 @@ module.exports.getQueryObj = (queryObj = {}) => {
       }
     }
 
-
     // filters
-    const [field, filterSuffix] = x.split('_');
-    if (filterSuffix && allFilterSuffix.includes(filterSuffix)) {
-      switch (filterSuffix) {
-        case CONTAINS:
-          obj.query[field] = { $regex: new RegExp(queryObj[x], 'i') };
-          break;
-        case CONTAINSS:
-          obj.query[field] = { $regex: new RegExp(queryObj[x]) };
-          break;
-        case NCONTAINS:
-          obj.query[field] = { $not: { $regex: new RegExp(queryObj[x]) } };
-          break;
-        case NCONTAINSS:
-          obj.query[field] = { $not: { $regex: new RegExp(queryObj[x]) } };
-          break;
-        default:
-          obj.query[field] = { [`$${filterSuffix}`]: queryObj[x] };
+    allFilterSuffix.forEach((y) => {
+      if (x.toLowerCase().includes(y)) {
+        const field = x.toLowerCase().replace(`_${y}`, '');
+        switch (y) {
+          case (CONTAINS):
+            obj.query[field] = { $regex: new RegExp(queryObj[x], 'i') };
+            break;
+          case (CONTAINSS):
+            obj.query[field] = { $regex: new RegExp(queryObj[x]) };
+            break;
+          case (NCONTAINS):
+            obj.query[field] = { $not: { $regex: new RegExp(queryObj[x], 'i') } };
+            break;
+          case (NCONTAINSS):
+            obj.query[field] = { $not: { $regex: new RegExp(queryObj[x]) } };
+            break;
+          default:
+            obj.query[field] = { [`$${y}`]: queryObj[x] };
+            break;
+        }
       }
-    }
+    });
   });
 
   return obj;
