@@ -66,8 +66,8 @@ module.exports.getQueryObj = (queryObj = {}) => {
 
     // filters
     allFilterSuffix.forEach((y) => {
-      if (x.toLowerCase().includes(y)) {
-        const field = x.toLowerCase().replace(`_${y}`, '');
+      if (x.includes(y)) {
+        const field = x.replace(`_${y}`, '');
         switch (y) {
           case (CONTAINS):
             obj.query[field] = { $regex: new RegExp(queryObj[x], 'i') };

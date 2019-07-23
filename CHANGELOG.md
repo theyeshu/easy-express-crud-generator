@@ -1,3 +1,7 @@
+# 1.4.3
+
+* All queries shall be case sensitive
+
 # 1.4.2
 
 * Fix the issue where reference ids are not working with filters
