@@ -1,3 +1,8 @@
+
+# 1.4.4
+
+* Fix ```in``` and ```nin``` queries
+
 # 1.4.3
 
 * All queries shall be case sensitive

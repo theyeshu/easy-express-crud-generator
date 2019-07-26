@@ -1,7 +1,6 @@
 const {
-  CONTAINS, CONTAINSS, NCONTAINS, NCONTAINSS,
-  LIMIT, SKIP, SORT, ASC, DESC,
-  allFilterSuffix, sortSuffix,
+  CONTAINS, CONTAINSS, NCONTAINS, NCONTAINSS, IN, NIN,
+  LIMIT, SKIP, SORT, ASC, DESC, allFilterSuffix, sortSuffix,
 } = require('../constants');
 
 module.exports.getPopulateAndSelect = (param) => {
@@ -66,7 +65,7 @@ module.exports.getQueryObj = (queryObj = {}) => {
 
     // filters
     allFilterSuffix.forEach((y) => {
-      if (x.includes(y)) {
+      if (x.includes(`_${y}`)) {
         const field = x.replace(`_${y}`, '');
         switch (y) {
           case (CONTAINS):
@@ -80,6 +79,12 @@ module.exports.getQueryObj = (queryObj = {}) => {
             break;
           case (NCONTAINSS):
             obj.query[field] = { $not: { $regex: new RegExp(queryObj[x]) } };
+            break;
+          case (IN):
+          case (NIN):
+            // eslint-disable-next-line no-case-declarations
+            const ele = typeof queryObj[x] === 'string' ? [queryObj[x]] : queryObj[x];
+            obj.query[field] = { [`$${y}`]: ele };
             break;
           default:
             obj.query[field] = { [`$${y}`]: queryObj[x] };
