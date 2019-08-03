@@ -71,9 +71,10 @@ class CRUD {
 
       const count = await this.getCountFromDb(query);
       const skipped = query.skip || 0;
+      const { limit } = query;
 
       return res.send({
-        status: true, data, count, skipped,
+        status: true, data, count, skipped, limit,
       });
     } catch (err) {
       if (req.errorHandler && typeof req.errorHandler === 'function') {

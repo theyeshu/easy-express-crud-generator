@@ -1,9 +1,10 @@
 
-# 1.4.5
+# 1.4.6
 
 * Fix query issue
 * Default query will send all data, use limit and skip if you want to get limited data
 * Update eslint & husky dev deps
+* Add new limit var in get api response
 
 # 1.4.4
 
