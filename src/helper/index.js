@@ -28,12 +28,11 @@ module.exports.getPopulateAndSelect = (param) => {
 };
 
 module.exports.getQueryObj = (queryObj = {}) => {
-  const keys = Object.keys(queryObj);
-  if (keys.length === 0) return queryObj;
-
   const obj = {
-    query: {}, sort: {}, limit: 50, skip: 0,
+    query: {}, sort: {}, limit: 0, skip: 0,
   };
+  const keys = Object.keys(queryObj);
+  if (keys.length === 0) return obj;
 
   keys.filter(x => !!x).forEach((x) => {
     // mongo id filter

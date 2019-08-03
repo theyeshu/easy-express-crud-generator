@@ -63,7 +63,7 @@ class CRUD {
 
   async getController(req, res) {
     try {
-      const options = getPopulateAndSelect(req.params[0], req.query);
+      const options = getPopulateAndSelect(req.params[0]);
       const query = getQueryObj(req.query);
 
       const data = await this.getDataFromDb({ ...options, ...query });

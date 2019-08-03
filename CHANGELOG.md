@@ -1,4 +1,10 @@
 
+# 1.4.5
+
+* Fix query issue
+* Default query will send all data, use limit and skip if you want to get limited data
+* Update eslint & husky dev deps
+
 # 1.4.4
 
 * Fix ```in``` and ```nin``` queries
