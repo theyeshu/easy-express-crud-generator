@@ -70,7 +70,7 @@ module.exports.getQueryObj = (queryObj = {}) => {
     allFilterSuffix.forEach((y) => {
       if (x.includes(y)) {
         const index = x.lastIndexOf('_');
-        const queryEle = x.slice(index).toLowerCase();
+        const queryEle = x.slice(index).toLowerCase().substr(1);
         const field = x.substr(0, index);
 
         switch (queryEle) {
@@ -90,10 +90,10 @@ module.exports.getQueryObj = (queryObj = {}) => {
           case (NIN):
             // eslint-disable-next-line no-case-declarations
             const ele = typeof queryObj[x] === 'string' ? [queryObj[x]] : queryObj[x];
-            obj.query[field] = { [`$${y}`]: ele };
+            obj.query[field] = { [`$${queryEle}`]: ele };
             break;
           default:
-            obj.query[field] = { [`$${y}`]: queryObj[x] };
+            obj.query[field] = { [`$${queryEle}`]: queryObj[x] };
             break;
         }
       }
