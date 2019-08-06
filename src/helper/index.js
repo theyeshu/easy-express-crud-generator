@@ -58,7 +58,9 @@ module.exports.getQueryObj = (queryObj = {}) => {
       if (x === SORT) {
         queryObj[x].split(',').forEach((z) => {
           const [field, order] = z.split(':');
-          if (order === ASC || order === DESC) obj.sort[field] = order;
+          if (order && (order.toLowerCase() === ASC || order.toLowerCase() === DESC)) {
+            obj.sort[field] = order.toLowerCase();
+          }
         });
         return;
       }
