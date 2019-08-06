@@ -5,9 +5,11 @@ const {
 
 module.exports.getPopulateAndSelect = (param) => {
   const obj = { populate: [], select: {} };
-  const arr = param ? param.split('/') : '';
+  const rawArr = param ? param.split('/') : '';
 
-  if (!arr || !Array.isArray(arr) || arr.length === 0) return obj;
+  if (!rawArr || !Array.isArray(rawArr) || rawArr.length === 0) return obj;
+
+  const arr = rawArr.map(x => x.replace(/[^a-zA-Z1-9_.]/g, ''));
 
   arr.filter(x => !!x).forEach((x) => {
     const fields = x.split('.');
