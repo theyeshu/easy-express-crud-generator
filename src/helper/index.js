@@ -9,13 +9,13 @@ module.exports.getPopulateAndSelect = (param) => {
 
   if (!rawArr || !Array.isArray(rawArr) || rawArr.length === 0) return obj;
 
-  const arr = rawArr.map(x => x.replace(/[^a-zA-Z1-9_.]/g, ''));
+  const arr = rawArr.map((x) => x.replace(/[^a-zA-Z1-9_.]/g, ''));
 
-  arr.filter(x => !!x).forEach((x) => {
+  arr.filter((x) => !!x).forEach((x) => {
     const fields = x.split('.');
 
     if (fields[0][0] === '_' && fields.length > 1) {
-      const fieldExist = obj.populate.find(i => i.path === fields[0]);
+      const fieldExist = obj.populate.find((i) => i.path === fields[0]);
       if (!fieldExist) {
         obj.populate.push({ path: fields[0], select: { [fields[1]]: true } });
       } else if (!fieldExist.select[fields[1]]) {
@@ -36,7 +36,7 @@ module.exports.getQueryObj = (queryObj = {}) => {
   const keys = Object.keys(queryObj);
   if (keys.length === 0) return obj;
 
-  keys.filter(x => !!x).forEach((x) => {
+  keys.filter((x) => !!x).forEach((x) => {
     // mongo id filter
     if (x === '_id') {
       obj.query._id = queryObj[x];
