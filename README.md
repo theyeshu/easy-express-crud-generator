@@ -141,11 +141,11 @@ Above example will create four endpoints for every mongoose schema.
 
 This is not the roboust library with lot's of functionalities. I just tried to do my best. I need your support to make it better. You can join me by forking the repo or sending your suggestions, comments etc.
 
-- [ ] Write documentation/how-to guide
-- [ ] Add an example app
-- [ ] Write test cases
+- [x] Write documentation/how-to guide
+- [x] Add an example app
+- [x] Write test cases
+- [x] Error handling
 - [ ] Swtich to typescript
-- [ ] Error handling
 
 I really hope my these small efforts may bring some help in your project.
 

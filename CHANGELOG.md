@@ -1,4 +1,10 @@
 
+# 1.4.8
+
+* Dependency update: eslint-airbnb-base & husky
+* Fix eslint errors due to udpate
+* Write test cases for helper functions
+
 # 1.4.6
 
 * Fix query issue
